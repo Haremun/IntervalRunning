@@ -1,25 +1,27 @@
 package com.example.kamil.intervalrunning;
 
+
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Chronometer;
 
-import com.example.kamil.intervalrunning.Gui.ChronometerGui;
+import com.example.kamil.intervalrunning.Fragments.PlayFragment;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.chronometer_main)
-    Chronometer chronometer_main;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        ChronometerGui chronometerGui = new ChronometerGui(chronometer_main);
-        chronometerGui.setChronometers();
+
+        PlayFragment playFragment = new PlayFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, playFragment);
+        transaction.commit();
 
     }
+
 }
